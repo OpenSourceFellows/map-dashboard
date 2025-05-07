@@ -1,14 +1,9 @@
 <!-- PROJECT LOGO & DESCRIPTION -->
 
 <div align="center">
-   <img src="https://avatars.githubusercontent.com/u/66801808?s=200&v=4g" alt="Description of image" width="100"/>
-   <br>
-   <h1>Amplify Front-End</h1>
+   <h1>Map Dashboard Web Application</h1>
    <p>
-      Amplify is an open-source app created for users to take the initiative in being part of an actionable step in the efforts to protect against climate change. The user is able to choose a climate campaign, then using their zip code, they will be able to select a representative of their choice. The user then donates to have their letter sent out by Amplify
-   </p>
-   <p>
-      This repository houses the source code for the Amplify front-end. It uses
+      This repository houses the source code for the Map Visualization Dashboard web app project. It uses
       <a href="https://vuejs.org/"><strong>Vue 3</strong></a>
       and
       <a href="https://vuetifyjs.com/en/"><strong>Vuetify</strong></a>.
