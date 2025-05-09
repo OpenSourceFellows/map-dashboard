@@ -3,7 +3,7 @@
 <div align="center">
    <h1>Map Dashboard Web Application</h1>
    <p>
-      This repository houses the source code for the Map Visualization Dashboard web app project. It uses
+      This repository houses the source code for the Map Dashboard data visualization web application project. It uses
       <a href="https://vuejs.org/"><strong>Vue 3</strong></a>
       and
       <a href="https://vuetifyjs.com/en/"><strong>Vuetify</strong></a>.
@@ -38,8 +38,6 @@ pnpm dev
 
 to start the development server. The app will run on port 8080 so make sure that is available on your local machine or you probably won't be able to access the app in your browser.
 
-![Home Page](assets/images/home-page.png)
-
 To exit the conainer, shut down the dev server with `ctrl + c` and you can just type `exit`.
 
 To shut down the container, use
@@ -61,3 +59,7 @@ We use Vitest for testing, which has a hot reloading feature. This means you can
 ```
 pnpm test
 ```
+
+## Important Links
+
+This project currently uses Tableau to format geospatial input data. Tableau has an extensive library of [tutorials](https://www.tableau.com/resources) and [API documentation](https://www.tableau.com/developer/tools?category=19921).
