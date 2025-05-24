@@ -2,7 +2,7 @@
   "name": "map-dashboard",
   "version": "1.0.0",
   "type": "module",
-  "description": "<div align=\"center\">    <h1>Map Dashboard Web Application</h1>    <p>       This repository houses the source code for the Map Dashboard data visualization web application project. It uses       <a href=\"https://vuejs.org/\"><strong>Vue 3</strong></a>       and       <a href=\"https://vuetifyjs.com/en/\"><strong>Vuetify</strong></a>.    </p> </div>",
+  "description": "A Vue 3 and Vuetify-powered web application for data visualization using maps.",
   "main": "src/js/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
