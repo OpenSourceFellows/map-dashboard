@@ -1,0 +1,73 @@
+name: Create Google Calendar Event on Issue Assignment
+
+on:
+  issues:
+    types: [assigned]
+
+jobs:
+  create-calendar-event:
+    if: github.event.assignee.login != null
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install google-api-python-client google-auth google-auth-httplib2 google-auth-oauthlib
+
+      - name: Create Calendar Event
+        env:
+          GCAL_CREDENTIALS_JSON: ${{ secrets.GCAL_CREDENTIALS_JSON }}
+        run: |
+          import os
+          import json
+          import datetime
+          import base64
+          from google.oauth2 import service_account
+          from googleapiclient.discovery import build
+
+          # Load GitHub event
+          import yaml
+          with open(os.environ['GITHUB_EVENT_PATH'], 'r') as f:
+              event = yaml.safe_load(f)
+
+          assignee = event["assignee"]["login"]
+          issue = event["issue"]
+          title = issue["title"]
+          url = issue["html_url"]
+          body = issue.get("body", "")
+
+          # Try to extract a due date from the body (format: Due: YYYY-MM-DD)
+          import re
+          match = re.search(r"(?i)due[:\s]+(\d{4}-\d{2}-\d{2})", body)
+          if not match:
+              print("No due date found in issue body.")
+              exit(0)
+
+          due_date = match.group(1)
+
+          credentials_info = json.loads(os.environ["GCAL_CREDENTIALS_JSON"])
+          creds = service_account.Credentials.from_service_account_info(
+              credentials_info,
+              scopes=["https://www.googleapis.com/auth/calendar"]
+          )
+
+          service = build("calendar", "v3", credentials=creds)
+          calendar_id = credentials_info.get("calendar_id", "primary")
+
+          event = {
+              "summary": f"Issue: {title}",
+              "description": f"{url}",
+              "start": {"date": due_date},
+              "end": {"date": due_date},
+          }
+
+          created_event = service.events().insert(calendarId=calendar_id, body=event).execute()
+          print(f"Event created: {created_event.get('htmlLink')}")
