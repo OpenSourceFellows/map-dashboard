@@ -1,0 +1,23 @@
+name: EcoInfra CO2 Emissions Report
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ecoinfra-analysis:
+    name: Analyze CO2 Emissions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run EcoInfra Action
+        uses: ecoinfra/ecoinfra-action@v1.1.2
+        with:
+          token: ${{ secrets.ECOINFRA_TOKEN }}
+          project-name: map-dashboard
+          path: ./terraform
+          apply: "true"
