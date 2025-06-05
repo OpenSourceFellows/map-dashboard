@@ -1,9 +1,7 @@
-import { describe, test, expect, beforeAll, afterAll } from '@jest/globals';
-import { Client } from '@notionhq/client';
-import pkg from 'pg';
-import { config } from 'dotenv';
-
-const { Pool } = pkg;
+const { describe, test, expect, beforeAll, afterAll } = require('@jest/globals');
+const { Client } = require('@notionhq/client');
+const { Pool } = require('pg');
+const { config } = require('dotenv');
 
 // Load environment variables
 config();
