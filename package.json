@@ -6,14 +6,20 @@
   "main": "src/js/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "test:integration": "jest tests/gee.integration.test.js",
     "start": "node src/js/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/earthengine": "^1.5.18",
     "@notionhq/client": "^3.1.1",
     "dotenv": "^16.5.0",
+    "google-auth-library": "^9.15.1",
     "pg": "^8.16.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
