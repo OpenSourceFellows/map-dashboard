@@ -1,0 +1,34 @@
+name: GEE JS Integration Tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+
+    env:
+      GEE_PRIVATE_KEY_PATH: ${{ github.workspace }}/privatekey.json
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Set up GEE private key
+        run: |
+          echo '${{ secrets.EARTHENGINE }}' > privatekey.json
+          chmod 600 privatekey.json
+
+      - name: Run GEE integration tests
+        run: npm run test:integration
