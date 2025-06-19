@@ -1,0 +1,7 @@
+# .gitattributes
+* text=auto
+*.vue text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.css text eol=lf
+*.md text eol=lf
