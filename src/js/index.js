@@ -1,3 +1,5 @@
+import fs from 'fs';
+import csv from 'csv-parser';
 import { Client } from "@notionhq/client";
 import { config } from "dotenv";
 import pkg from "pg";
@@ -18,6 +20,73 @@ const pool = new Pool({
   user: process.env.PG_USER,
   password: process.env.PG_PASSWORD,
 });
+
+/**
+ * Inserts landmark records into 'landmarks_table'
+ * Duplicate rows will be ignored.
+ * @param {Array<Object>} rows - CSV data as objects
+ * @throws Rollback if error occurs during insertion. 
+ */
+async function insertLandmarkRows(rows) {
+  const client = await pool.connect();
+  try {
+    await client.query('BEGIN'); // Start transaction
+    for (const row of rows) {
+      const query = `
+        INSERT INTO landmarks_table (
+          campaign, landmark, species, image, longitude, latitude, acreage
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7)
+        ON CONFLICT DO NOTHING
+      `;
+      const values = [
+        row.campaign,
+        row.landmark,
+        row.species,
+        row.image,
+        parseFloat(row.longitude),
+        parseFloat(row.latitude),
+        parseInt(row.acreage),
+      ];
+      await client.query(query, values); // Insert row, skip duplicates
+    }
+    await client.query('COMMIT'); // Commit transaction
+    console.log('All rows inserted successfully!');
+  } catch (err) {
+    await client.query('ROLLBACK'); // Undo all changes if anything fails
+    console.error('Error inserting rows:', err);
+  } finally {
+    client.release(); // Release connection
+  }
+}
+
+/**
+ * Reads landmark data from CSV file, parses data, inserts data into table.
+ * @returns {Promise<void>} Resolves when all data loaded.
+ * @throws Rejects if trouble reading or inserting data.
+ */
+async function syncLandmarkData() {
+  const results = [];
+  return new Promise((resolve, reject) => {
+    fs.createReadStream('data/external/landmarks.csv')
+      .pipe(csv())
+      .on('data', (row) => {
+        results.push(row); // Collect each row
+      })
+      .on('end', async () => {
+        try {
+          console.log(`Loaded ${results.length} rows from CSV.`);
+          await insertLandmarkRows(results); // Load into PostgreSQL
+          resolve(); // Resolve the promise after successful insert
+        } catch (err) {
+          reject(err); // Reject on failure to insert
+        }
+      })
+      .on('error', (err) => {
+        console.error('Error reading CSV:', err);
+        reject(err); // Reject on read failure
+      });
+  });
+}
 
 (async () => {
   try {
@@ -40,6 +109,7 @@ const pool = new Pool({
     }
 
     console.log("Data sync complete.");
+    await syncLandmarkData();
   } catch (err) {
     console.error("Error during sync:", err);
   } finally {
