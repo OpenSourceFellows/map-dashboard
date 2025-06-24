@@ -20,6 +20,8 @@ jobs:
 
       - name: Run Sustainable NPM Action
         uses: nordcloud/sustainable-npm-action@v1
+        with:
+          working-directory: amplify_server
 
       - name: Upload sustainability report
         uses: actions/upload-artifact@v4
