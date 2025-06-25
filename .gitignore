@@ -1,4 +1,13 @@
 # .env.*
 /node_modules
 
+
 .DS_Store
+# Data files
+data/external/canopy/*.tif
+data/external/canopy/*.tiff
+data/external/canopy/*.png
+__pycache__/
+*.py[cod]
+*.class
+
