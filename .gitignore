@@ -1,6 +1,7 @@
 # .env.*
 /node_modules
 
+
 .DS_Store
 # Data files
 data/external/canopy/*.tif
