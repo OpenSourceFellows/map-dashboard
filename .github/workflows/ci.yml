@@ -1,0 +1,134 @@
+on:
+  push:
+  workflow_dispatch:
+  workflow_call:
+    outputs:
+      image-tag:
+        description: "image tag"
+        value: ${{ jobs.build-and-test.outputs.image-tag }}
+
+name: ci
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # need this for OIDC
+      contents: read
+      actions: read
+      security-events: write      
+    environment: ${{ github.ref_name }} # need this to fetch variables and secrets
+    outputs:
+      image-tag: ${{ steps.set-image-tag.outputs.IMAGE_TAG }} 
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+          aws-region: ${{ vars.AWS_REGION }}         
+
+      # cloudformation linting
+      - name: Cfn Lint
+        id: cfn-lint
+        uses: scottbrenner/cfn-lint-action@v2
+
+      - name: Run Cfn Lint
+        id: cfn-lint-run
+        run: |
+          shopt -s globstar # enable globbing
+          cfn-lint --version
+          cfn-lint -t ./templates/*.yaml        
+
+      # cloudformation static analysis
+      - name: Cfn Nag
+        id: cfn-nag
+        uses: stelligent/cfn_nag@master
+        with:
+          input_path: templates
+          extra_args: -o sarif
+          output_path: cfn_nag.sarif
+          
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: cfn_nag.sarif   
+
+      # Build images
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      #- name: Detect Dockerfile changes
+      #  id: detect-dockerfile-changes
+      #  uses: tj-actions/changed-files@v35
+      #  with:
+      #    files: app/**
+
+      # Checkout Amplify Repo
+      - name: Checkout Amplify Repo
+        run: |
+          cd $GITHUB_WORKSPACE
+          git clone https://github.com/ProgramEquity/amplify app
+          cp $GITHUB_WORKSPACE/Dockerfile $GITHUB_WORKSPACE/app
+          ls -l $GITHUB_WORKSPACE/app
+
+
+      - name: Build, tag, and push image to AWS ECR
+        id: build-image
+        env:
+          AWS_REGION: ${{ vars.AWS_REGION }}
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ vars.ECR_REPO_NAME }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          echo "Building image $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          cd $GITHUB_WORKSPACE/app
+          docker build \
+              -t $ECR_REPOSITORY:latest \
+              -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
+              -t $ECR_REPOSITORY:$IMAGE_TAG \
+              -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          echo "Pushed image $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      - name: Set new image tag
+        id: set-image-tag
+        run: |
+          echo "IMAGE_TAG=${IMAGE_TAG}" >> $GITHUB_OUTPUT
+          echo "IMAGE_TAG=${IMAGE_TAG}" >> $GITHUB_ENV
+        
+      - name: ECR image scan
+        id: image-scan
+        uses: alexjurkiewicz/ecr-scan-image@v1.7.1
+        with:
+          repository: ${{ vars.ECR_REPO_NAME }}
+          tag: latest
+
+      - name: Check for critical vulnerabilities
+        run: |
+          if [ "${{ steps.image-scan.outputs.critical }}" != "0" ]; then
+            echo "::error::Critical vulnerabilities found: ${{ steps.image-scan.outputs.critical }}"
+            exit 1
+          fi
+
+      - name: Summary
+        id: summary
+        run: |
+          echo "## ECR Container Vulnerabilities found:" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.image-scan.outputs.critical }} Critical" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.image-scan.outputs.high }} High" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.image-scan.outputs.medium }} Medium" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.image-scan.outputs.low }} Low" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.image-scan.outputs.informational }} Info" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.image-scan.outputs.undefined }} Undefined" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.image-scan.outputs.total }} Total" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
+          echo "## ECR Container Image:" >> $GITHUB_STEP_SUMMARY
+          echo "image-tag: ${{ steps.set-image-tag.outputs.IMAGE_TAG }}" >> $GITHUB_STEP_SUMMARY
