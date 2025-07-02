@@ -22,8 +22,8 @@ const pool = new Pool({
 });
 
 /**
- * Inserts landmark records into 'landmarks_table'
- * Duplicate rows will be ignored.
+ * Inserts landmark records into table
+ * Duplicate rows on (campaign, name) will be ignored.
  * @param {Array<Object>} rows - CSV data as objects
  * @throws Rollback if error occurs during insertion. 
  */
@@ -33,19 +33,20 @@ async function insertLandmarkRows(rows) {
     await client.query('BEGIN'); // Start transaction
     for (const row of rows) {
       const query = `
-        INSERT INTO landmarks_table (
-          campaign, landmark, species, image, longitude, latitude, acreage
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7)
-        ON CONFLICT DO NOTHING
-      `;
+        INSERT INTO landmarks (
+          campaign, name, species, longitude, latitude, acres_owned
+        ) VALUES ($1, $2, $3, $4, $5, $6)
+        ON CONFLICT ON CONSTRAINT unique_landmark_campaign DO NOTHING
+      `; // Postgres column names (insert data)
+
+      // CSV column names--exluded 'water' SQL column since CSV file omits it
       const values = [
         row.campaign,
-        row.landmark,
-        row.species,
-        row.image,
-        parseFloat(row.longitude),
-        parseFloat(row.latitude),
-        parseInt(row.acreage),
+        row.landmark, // becomes 'name' in SQL
+        row.species || '',
+        Number.isFinite(parseFloat(row.longitude)) ? parseFloat(row.longitude) : 0,
+        Number.isFinite(parseFloat(row.latitude)) ? parseFloat(row.latitude) : 0,
+        Number.isFinite(parseInt(row.acreage)) ? parseInt(row.acreage) : 0,
       ];
       await client.query(query, values); // Insert row, skip duplicates
     }
