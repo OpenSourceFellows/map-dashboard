@@ -1,0 +1,7 @@
+{
+  "name": "map-dashboard-devcontainer",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "postStartCommand": "/workspaces/map-dashboard/.devcontainer/setup.sh"
+}
