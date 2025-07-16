@@ -16,3 +16,6 @@ const vuetify = createVuetify({
 
 createApp(App).use(vuetify).mount('#app')
 // Register global components, plugins, etc. here if needed
+
+//import css style sheet
+import './style.css'

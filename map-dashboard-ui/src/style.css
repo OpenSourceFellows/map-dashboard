@@ -58,13 +58,68 @@ button:focus-visible {
   padding: 2em;
 }
 
+
+/* ------------- MAP VISUALIZATION APP --------------*/
+/* COLORS
+white = #FFFFFF
+grey-darken-3 = #424242
+blue = #2196F3
+green-darken-1 #43A047 */
+
 #app {
   max-width: 1280px;
+  min-width: 360px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: #FFFFFF;
 }
 
+/* -------------- Nav Bar and Footer ------------ */
+.v-toolbar,
+.v-footer {
+  background-color: #FFFFFF;
+}
+
+/* ------ Map Visualization Section ------- */
+.map-vis-col {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+
+/* ------ Map Information Section ------- */
+
+/* Remove auto-styling*/
+.map-info-reset * {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  text-align: left !important;
+  padding: 0 !important;
+}
+
+/* Legend Section */
+.points-container {
+  margin-bottom: 16px;
+}
+
+.points-item,
+.areas-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.areas-container {
+  margin-bottom: 24px;
+}
+
+.areas-item {
+  justify-items: flex-start;
+}
+
+
+/* ---------------- MEDIA QUERIES ----------------- */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -75,5 +130,12 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+/* Breakpoint for smaller devices */
+@media only screen and (max-width: 961px) {
+  .map-vis-col {
+    margin-top: 16px;
   }
 }
