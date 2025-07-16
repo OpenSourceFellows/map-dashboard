@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS landmarks (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+  campaign TEXT NOT NULL,
+  name TEXT NOT NULL,
+  latitude DOUBLE PRECISION DEFAULT 0,
+  longitude DOUBLE PRECISION DEFAULT 0,
+  acres_owned INTEGER DEFAULT 0,
+  species TEXT DEFAULT '',
+  water DOUBLE PRECISION DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  CONSTRAINT fk_campaign FOREIGN KEY (campaign) REFERENCES campaigns(name),
+  CONSTRAINT unique_landmark_campaign UNIQUE (campaign, name)
+);
