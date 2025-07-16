@@ -1,0 +1,30 @@
+name: Analyze NPM Dependencies Sustainability
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  analyze-sustainability:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Run Sustainable NPM Action
+        uses: nordcloud/sustainable-npm-action@v1
+        with:
+          working-directory: amplify_server
+
+      - name: Upload sustainability report
+        uses: actions/upload-artifact@v4
+        with:
+          name: sustainability-report
+          path: sustainability-report.json
