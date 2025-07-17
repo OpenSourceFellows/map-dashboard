@@ -1,14 +1,14 @@
-campaign,landmark,species,image,longitude,latitude,acreage
-"Protect Anza Desert","Anza, San Diego","Diamond Cactus","cholla",-117.21605301,32.79797516,18884
-"Save our Herring","Cape Cod","Herring","herring",-70.29624784,41.66878836,45000
-"California Rivers","Klamath River","Salmon","salmon",-122.82559,41.861244,2265000
-"Tuolomne River Campaign","Yosemite","Rainbow Trout","trout",-119.538329,37.865101,23915
-"California Wetlands","Baylands Nature Preserve","Swallowtail Butterfly","swallowtail_butterfly",-122.1075565,37.4575062,100
-"Stream Inflow Study","Rattan Landing","Catfish","catfish",-95.48292494,34.19718093,100
-"Pueblo Alliance","Greater Chaco","Mountain Lion","mountain_lion",-95.5004168,29.75362647,100
-"Save Kaimichi","Kaimichi River","Mussels","mussels",-95.48813653,34.23885624,100
+campaign,landmark,species,image,longitude,latitude,acreage,species_type
+"Protect Anza Desert","Anza, San Diego","Diamond Cactus","cholla",-117.21605301,32.79797516,18884,plants
+"Save our Herring","Cape Cod","Herring","herring",-70.29624784,41.66878836,45000,animals
+"California Rivers","Klamath River","Salmon","salmon",-122.82559,41.861244,2265000,animals
+"Tuolomne River Campaign","Yosemite","Rainbow Trout","trout",-119.538329,37.865101,23915,animals
+"California Wetlands","Baylands Nature Preserve","Swallowtail Butterfly","swallowtail_butterfly",-122.1075565,37.4575062,100,animals
+"Stream Inflow Study","Rattan Landing","Catfish","catfish",-95.48292494,34.19718093,100,animals
+"Pueblo Alliance","Greater Chaco","Mountain Lion","mountain_lion",-95.5004168,29.75362647,100,animals
+"Save Kaimichi","Kaimichi River","Mussels","mussels",-95.48813653,34.23885624,100,animals
 "Clean up Jersey","Central Park","","",-73.968285,40.785091,100
 "Clean up White Mesa","White Mesa","","",-109.46698,37.465717,597000
-"Land regeneration","Duwamish Longhouse","Duck","duck",-122.3520131,47.5609509,11
-"Protect Tomales Bay and Tulle Elk","Tomales Bay","Herring","herring",-122.91277387,38.1712709,71000
-"Protext HaKamwe Healing Springs","Wikieup","Eagle","eagle",-113.61511351,34.71953628,360
+"Land regeneration","Duwamish Longhouse","Duck","duck",-122.3520131,47.5609509,11,animals
+"Protect Tomales Bay and Tulle Elk","Tomales Bay","Herring","herring",-122.91277387,38.1712709,71000,animals
+"Protext HaKamwe Healing Springs","Wikieup","Eagle","eagle",-113.61511351,34.71953628,360,animals
