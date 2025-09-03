@@ -1,0 +1,31 @@
+on:
+  schedule:
+    - cron: '0 * * * *'  # Every hour
+  workflow_dispatch:      # Allow manual trigger
+
+jobs:
+ sync:
+  runs-on: ubuntu-latest
+
+  steps:
+  - name: Checkout code
+    uses: actions/checkout@v4
+
+  - name: Set up Node.js
+    uses: actions/setup-node@v4
+    with:
+      node-version: '20'  # or '18', depending on your preference
+
+  - name: Install dependencies
+    run: npm install
+
+  - name: Run sync script
+    env:
+      NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+      NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }} 
+      PGHOST: ${{ secrets.PGHOST }} 
+      PGDATABASE: ${{ secrets.PGDATABASE }}
+      PGUSER: ${{ secrets.PGUSER }}
+      PGPASSWORD: ${{ secrets.PGPASSWORD }} 
+      PGPORT: ${{ secrets.PGPORT }} 
+    run: node sync.js
