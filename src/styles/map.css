@@ -48,7 +48,7 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     padding: 24px;
     z-index: 1000;
-    min-width: 280px;
+    min-width: 250px;
     border: 3px solid rgba(102, 126, 234, 0.6);
     transition: all 0.3s ease;
 }
@@ -145,6 +145,12 @@
     border: 1px solid #4A90E2;
 }
 
+/* Dark mode water bodies - keep same blue color */
+.dark .area-legend-icon--water {
+    background-color: rgba(74, 144, 226, 0.3);
+    border: 1px solid #4A90E2;
+}
+
 .area-legend-icon--soil {
     background-color: rgba(155, 89, 182, 0.3);
     border: 1px solid #9B59B6;
@@ -158,12 +164,13 @@
     border-radius: 12px;
     transition: all 0.3s ease;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(102, 126, 234, 0.15);
     margin-bottom: 8px;
 }
 
 .layer-item:hover {
     background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(102, 126, 234, 0.3);
     transform: translateX(4px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
@@ -201,13 +208,14 @@
     cursor: pointer;
     transition: all 0.3s ease;
     background: rgba(255, 255, 255, 0.1);
-    border: 2px solid transparent;
+    border: 2px solid rgba(102, 126, 234, 0.2);
     backdrop-filter: blur(5px);
     min-width: 80px;
 }
 
 .layer-icon-button:hover {
     background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(102, 126, 234, 0.4);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
@@ -275,4 +283,157 @@
 .logo-icon:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+/* ===== DARK MODE STYLES ===== */
+
+/* Dark mode header */
+.dark .header {
+    background: rgba(26, 26, 46, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .header-logo {
+    color: #e2e8f0;
+}
+
+.dark .logo-icon {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+/* Dark mode map wrapper */
+.dark .map-wrapper {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Dark mode legend */
+.dark .map-legend {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%);
+    border: 3px solid rgba(102, 126, 234, 0.4);
+    color: #e2e8f0;
+}
+
+.dark .map-legend:hover {
+    border-color: rgba(102, 126, 234, 0.6);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dark .legend-title {
+    color: #f1f5f9;
+}
+
+.dark .legend-subtitle {
+    color: #cbd5e1;
+}
+
+.dark .legend-item {
+    color: #94a3b8;
+}
+
+.dark .area-legend-item {
+    color: #94a3b8;
+}
+
+/* Dark mode layer controls */
+.dark .layer-controls {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%);
+    border: 3px solid rgba(102, 126, 234, 0.4);
+    color: #e2e8f0;
+}
+
+/* Ensure water areas keep blue color in dark mode */
+.dark .leaflet-interactive[fill="#4A90E2"] {
+    fill: #4A90E2 !important;
+    fill-opacity: 0.4 !important;
+}
+
+.dark .leaflet-interactive[stroke="#4A90E2"] {
+    stroke: #4A90E2 !important;
+}
+
+.dark .layer-controls:hover {
+    border-color: rgba(102, 126, 234, 0.6);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dark .legend-title {
+    color: #f1f5f9;
+}
+
+.dark .layer-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .layer-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dark .layer-name {
+    color: #f1f5f9;
+}
+
+.dark .layer-description {
+    color: #94a3b8;
+}
+
+/* Dark mode layer buttons */
+.dark .layer-icon-button {
+    background: rgba(255, 255, 255, 0.05);
+    color: #e2e8f0;
+}
+
+.dark .layer-icon-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dark .layer-icon-button.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.dark .layer-icon-text {
+    color: #94a3b8;
+}
+
+.dark .layer-icon-button.active .layer-icon-text {
+    color: white !important;
+}
+
+.dark .layer-icon-button.active svg {
+    color: white !important;
+    fill: white !important;
+}
+
+/* Responsive design to prevent collisions */
+@media (max-width: 1200px) {
+    .map-legend {
+        margin-right: 0;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .map-legend {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 10px;
+        max-width: none;
+    }
+    
+    .layer-controls {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 10px;
+        max-width: none;
+    }
+    
+    .main-content {
+        display: flex;
+        flex-direction: column;
+    }
 }
