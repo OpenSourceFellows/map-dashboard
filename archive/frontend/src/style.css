@@ -1,10 +1,10 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: system-ui, Roboto, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: #212121;
   background-color: #242424;
 
   font-synthesis: none;
@@ -15,12 +15,26 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #01579B;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
+
+p {
+  size: 16px;
+}
+
+p-small {
+  size: 14px;
+}
+
+p-xsmall {
+  size: 12px;
+}
+
 
 body {
   margin: 0;
@@ -31,8 +45,49 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 48;
   line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: 36;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: 26;
+  font-weight: light;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+h4 {
+  font-size: 22;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+h5 {
+  font-size: 18;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+h5 {
+  font-size: 18;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+h6 {
+  font-size: 16;
+  font-weight: light;
+  line-height: 1.1;
+  margin-bottom: 8px;
 }
 
 button {
