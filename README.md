@@ -2,7 +2,7 @@
 
 A modern, interactive map dashboard built with React and Vite. This project provides a user-friendly interface for visualizing and interacting with geospatial data layers.
 
-![Map Web App Preview](./public/map-preview.png)
+![Map Web App Preview](./public/map-dashboard-preview.png)
 
 ## Features
 
@@ -16,18 +16,18 @@ A modern, interactive map dashboard built with React and Vite. This project prov
 ## Prerequisites
 
 - Node.js (v18 or higher recommended)
-- npm (v9 or higher)
+- pnpm (v9 or higher)
 
 ## Installation
 
 1. Clone the repository:
    ```sh
    git clone https://github.com/OpenSourceFellows/map-dashboard.git
-   cd map-dashboard/frontend
+   cd map-dashboard
    ```
 2. Install dependencies:
    ```sh
-   npm install
+   pnpm install
    ```
 
 ## Development
@@ -35,7 +35,7 @@ A modern, interactive map dashboard built with React and Vite. This project prov
 To start the development server:
 
 ```sh
-npm run dev
+pnpm run dev
 ```
 
 The app will be available at `http://localhost:5173` by default.
@@ -43,7 +43,7 @@ The app will be available at `http://localhost:5173` by default.
 ## Project Structure
 
 ```
-frontend/
+main/
 ├── public/           # Static assets
 ├── src/              # Source code
 │   ├── components/   # UI and map components
@@ -75,11 +75,8 @@ frontend/
 
 ## How to Contribute
 
-1. Clone the repository
-2. Create a new branch (`git checkout -b feature/your-feature`)
-3. Commit your changes
-4. Push to your branch and open a pull request
+[CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License
 
-This project is open source and available under the MIT License.
+[LICENSE.md](LICENSE.md)
