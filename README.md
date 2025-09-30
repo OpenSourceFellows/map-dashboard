@@ -6,7 +6,8 @@ A modern, interactive map dashboard built with React and Vite. This project prov
 
 ## Features
 
-- Interactive map visualization (placeholder, ready for integration)
+- Interactive map visualization with Leaflet
+- Dark mode support
 - Layer controls for toggling map data
 - Custom UI components (Button, CheckBox)
 - Responsive layout and styling
@@ -15,7 +16,7 @@ A modern, interactive map dashboard built with React and Vite. This project prov
 
 ## Prerequisites
 
-- Node.js (v18 or higher recommended)
+- Node.js (v20 or higher recommended)
 - pnpm (v9 or higher)
 
 ## Installation
@@ -32,7 +33,7 @@ A modern, interactive map dashboard built with React and Vite. This project prov
 
 ## Development
 
-To start the development server:
+Start the development server:
 
 ```sh
 pnpm run dev
@@ -40,17 +41,39 @@ pnpm run dev
 
 The app will be available at `http://localhost:5173` by default.
 
+Build for production:
+
+```sh
+pnpm run build
+```
+
+Preview production build:
+
+```sh
+pnpm run preview
+```
+
+Run linter:
+
+```sh
+pnpm run lint
+```
+
 ## Project Structure
 
 ```
-main/
+map-dashboard/
 ├── public/           # Static assets
 ├── src/              # Source code
 │   ├── components/   # UI and map components
+│   │   ├── Layout/   # Header and layout components
+│   │   ├── Map/      # Map-related components
+│   │   └── UI/       # Reusable UI components
 │   ├── data/         # Mock data
 │   ├── hooks/        # Custom React hooks
 │   ├── styles/       # CSS files
 │   ├── types/        # TypeScript types
+│   ├── utils/        # Utility functions
 │   ├── App.tsx       # Main app component
 │   └── main.tsx      # Entry point
 ├── package.json      # Project metadata and scripts
@@ -63,20 +86,21 @@ main/
 - [React](https://react.dev/) – UI library
 - [Vite](https://vitejs.dev/) – Fast build tool
 - [TypeScript](https://www.typescriptlang.org/) – Type safety
+- [Leaflet](https://leafletjs.com/) – Interactive maps
+- [React Leaflet](https://react-leaflet.js.org/) – React components for Leaflet
 - [ESLint](https://eslint.org/) – Linting
 
 ## Custom Components
 
 - `Header` – App title and navigation
-- `MapContainer` – Map area and controls
-- `LayerControls` – Toggle map layers
-- `MapLegend` – Map legend
-- `Button` & `CheckBox` – UI elements
+- `MapContainer` – Interactive Leaflet map with markers and polygons
+- `LayerControls` – Toggle map layers and data types
+- `MapLegend` – Map legend display
+- `CheckBox` – UI checkbox component
 
-## How to Contribute
+## Additional Documentation
 
-[CONTRIBUTING.md](CONTRIBUTING.md)
-
-## License
-
-[LICENSE.md](LICENSE.md)
+- [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines
+- [LICENSE.md](LICENSE.md) - License information
+- [docs/MAINTAINER.md](docs/MAINTAINER.md) - Maintainer guide
+- [docs/QGIS_ATTRIBUTE_PRESERVATION.md](docs/QGIS_ATTRIBUTE_PRESERVATION.md) - QGIS data layer documentation
