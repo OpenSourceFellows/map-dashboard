@@ -1,33 +1,66 @@
-1. **Review in GitHub UI**:
+# Maintainer Guide
 
-   - Check "Files changed" tab.
-   - Comment on lines if needed.
-   - Approve or request changes.
+This guide is for maintainers with write access to the repository.
 
-2. **Check out the PR locally (optional)**:
-   If you want to test it locally:
+**Key difference from contributors:** You can create branches directly in the main repository instead of forking.
 
-   ```bash
-   gh pr checkout <PR-number>
-   ```
+## Branch Naming Patterns
 
-3. **Merge strategy:**
+Based on existing branches in the repository:
 
-- Use Squash and Merge to keep history clean.
-- Optionally delete the contributor’s branch (GitHub asks this by default).
+- `feature/` - New features (e.g., `feature/dark-mode`, `feature/navbar`)
+- `chore/` - Maintenance tasks (e.g., `chore/switch-to-pnpm`, `chore/organize-files`)
+- `docs/` - Documentation updates (e.g., `docs/update-readme-and-package-metadata`)
+- `Issue-##` - Issue-specific work (e.g., `Issue-10`, `Issue-67`)
 
----
+**Creating a branch:**
+```bash
+git checkout main
+git pull origin main
+git checkout -b <type>/<descriptive-name>
+```
 
-### 🔁 If the Contributor Will Submit More Work
+## Creating Pull Requests
 
-- Remind them to:
-  - Create a new branch for each PR.
-  - Keep their fork synced regularly.
+Create PRs for changes using GitHub CLI:
 
----
+```bash
+# Push your branch
+git push -u origin <your-branch-name>
 
-### 🧪 Optional: Automation Tools to Consider
+# Create PR (uses PR template)
+gh pr create --title "Your PR title" --fill
+```
 
-- GitHub Actions – for linting, testing, or builds.
-- PR Labelers – auto-label PRs.
-- CODEOWNERS – assign reviewers automatically.
+## Reviewing Pull Requests
+
+### 1. Review in GitHub UI
+
+- Check the **"Files changed"** tab
+- Comment on lines if needed
+- Approve or request changes
+
+### 2. Check out PR locally (optional)
+
+If you want to test it locally:
+
+```bash
+gh pr checkout <PR-number>
+```
+
+### 3. Merge Strategy
+
+- Use **Squash and Merge** to keep history clean
+- Optionally delete the contributor's branch (GitHub prompts by default)
+
+## If a Contributor Will Submit More Work
+
+Remind them to:
+- Create a new branch for each PR
+- Keep their fork synced regularly
+
+## Optional: Automation Tools to Consider
+
+- GitHub Actions – for linting, testing, or builds
+- PR Labelers – auto-label PRs
+- CODEOWNERS – assign reviewers automatically
