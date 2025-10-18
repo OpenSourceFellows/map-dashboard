@@ -1,3 +1,102 @@
+/* Custom variables: spacing */
+:root {
+    --row-gutter: 8px;
+    --row-gutterr: 0px;
+    --row-1: 16px;
+
+    --col-gutter: 10px;
+    --col-1: 20px;
+}
+
+/* Custom variables: colors */
+:root {
+  --edge: 20px;
+  --border-radius: 16px;
+  --border: 3px solid var(--color-primary);
+  --border-hover: rgba(102, 126, 234, 0.8);
+  --padding: 24px;
+  --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --box-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.2);
+  --bg-gradient-start: rgba(255,255,255,0.95);
+  --bg-gradient-end: rgba(248,250,252,0.95);
+  --color-title: #2c3e50;
+  --color-text: #2c3e50;
+  --translate-y: translate(-2px);
+  --zIndex: 1000;
+
+  /* layer-item */
+  --border-layer-item: 1px solid rgba(102, 126, 234, 0.15);
+  --border-hover-layer-item: rgba(102, 126, 234, 0.3);
+  --background-layer-item: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] {
+  --border: 3px solid rgba(102, 126, 234, 0.4);
+  --border-hover: rgba(102, 126, 234, 0.6);
+  --box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  --box-shadow-hover: 0 12px 40px rgba(0,0,0,0.4);
+  --bg-gradient-start: rgba(26,26,46,0.95);
+  --bg-gradient-end: rgba(22,33,62,0.95);
+  --color-title: #f1f5f9;
+  --color-text: #e2e8f0;
+
+  /* layer-item */
+  --border-layer-item: 1px solid rgba(255, 255, 255, 0.1)
+}
+
+/* Custom variables: wrappers */
+:root {
+  /* App */
+  --app-margin: 10px;
+  --app-blur: 10px;
+
+  /* LayerControls */
+  --controls-width: 250px;
+
+  /* Animations */
+  --app-transition: all 0.3s ease;
+}
+
+/* Reusable styles */
+.space-row-1 {
+    padding-bottom: var(--row-1);
+}
+
+.component-title {
+    color: var(--color-title);
+}
+
+/* LayerControls */
+.layer-controls {
+    border-radius: var(--border-radius);
+    border: var(--border);
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    backdrop-filter: blur(var(--app-blur));
+    transition: var(--app-transition);
+    box-shadow: var(--box-shadow);
+}
+
+.layer-controls:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--box-shadow-hover);
+    transform: var(--translate-y);
+}
+
+.layer-item {
+    border: var(--border-layer-item);
+    background: var(--background-layer-item);
+    color: var(--color-text);
+    transition: var(--app-transition);
+}
+
+.layer-item:hover {
+    border-color: var(--border-hover-layer-item);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(4px);
+    box-shadow: var(--box-shadow);
+}
+
+/* Map */
 .map-wrapper {
     height: 100%;
     width: 100%;
@@ -38,26 +137,7 @@
     border-color: rgba(102, 126, 234, 0.8);
 }
 
-.layer-controls {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    padding: 24px;
-    z-index: 1000;
-    min-width: 250px;
-    border: 3px solid rgba(102, 126, 234, 0.6);
-    transition: all 0.3s ease;
-}
-
-.layer-controls:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-    border-color: rgba(102, 126, 234, 0.8);
-}
+/*  */
 
 .legend-section {
     margin-bottom: 20px;
@@ -76,13 +156,6 @@
     font-weight: 600;
     margin-bottom: 8px;
     color: #34495e;
-}
-
-.legend-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: #2c3e50;
 }
 
 .legend-items {
@@ -156,33 +229,8 @@
     border: 1px solid #9B59B6;
 }
 
-.layer-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 16px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(102, 126, 234, 0.15);
-    margin-bottom: 8px;
-}
-
-.layer-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(102, 126, 234, 0.3);
-    transform: translateX(4px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
 .layer-info {
     flex: 1;
-}
-
-.layer-name {
-    font-weight: 500;
-    color: #2c3e50;
-    margin-bottom: 4px;
 }
 
 .layer-description {
@@ -320,10 +368,6 @@
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
-.dark .legend-title {
-    color: #f1f5f9;
-}
-
 .dark .legend-subtitle {
     color: #cbd5e1;
 }
@@ -336,13 +380,6 @@
     color: #94a3b8;
 }
 
-/* Dark mode layer controls */
-.dark .layer-controls {
-    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%);
-    border: 3px solid rgba(102, 126, 234, 0.4);
-    color: #e2e8f0;
-}
-
 /* Ensure water areas keep blue color in dark mode */
 .dark .leaflet-interactive[fill="#4A90E2"] {
     fill: #4A90E2 !important;
@@ -351,28 +388,6 @@
 
 .dark .leaflet-interactive[stroke="#4A90E2"] {
     stroke: #4A90E2 !important;
-}
-
-.dark .layer-controls:hover {
-    border-color: rgba(102, 126, 234, 0.6);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-}
-
-.dark .legend-title {
-    color: #f1f5f9;
-}
-
-.dark .layer-item {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.dark .layer-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.dark .layer-name {
-    color: #f1f5f9;
 }
 
 .dark .layer-description {
