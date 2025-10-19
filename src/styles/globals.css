@@ -71,3 +71,7 @@ h2 { font-size: 20px; }
 .app-container {
     backdrop-filter: blur(var(--app-blur));
 }
+
+.main-content {
+    background: none;
+}

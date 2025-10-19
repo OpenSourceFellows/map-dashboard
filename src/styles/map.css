@@ -11,17 +11,18 @@
 
 /* Custom variables: colors */
 :root {
-  --edge: 20px;
-  --border-radius: 16px;
   --border: 3px solid var(--color-primary);
   --border-hover: rgba(102, 126, 234, 0.8);
-  --padding: 24px;
   --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   --box-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.2);
   --bg-gradient-start: rgba(255,255,255,0.95);
   --bg-gradient-end: rgba(248,250,252,0.95);
   --color-title: #2c3e50;
   --color-text: #2c3e50;
+
+  --edge: 20px;
+  --border-radius: 16px;
+  --padding: 24px;
   --translate-y: translate(-2px);
   --zIndex: 1000;
 
@@ -42,6 +43,7 @@
 
   /* layer-item */
   --border-layer-item: 1px solid rgba(102, 126, 234, 0.15);
+
   --border-hover-layer-item: rgba(102, 126, 234, 0.3);
   --background-layer-item: rgba(255, 255, 255, 0.05);
 }
@@ -180,6 +182,20 @@
     color: var(--color-toggle-icon);
 }
 
+/* Map Container */
+.map-wrapper {
+    border-radius: var(--border-radius);
+    border: var(--border-header);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+
+.leaflet-container {
+    height: 100%;
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
 /* LayerControls */
 .layer-controls {
     border-radius: var(--border-radius);
@@ -210,60 +226,6 @@
     box-shadow: var(--box-shadow);
 }
 
-/* Map */
-.map-wrapper {
-    height: 100%;
-    width: 100%;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.leaflet-container {
-    height: 100%;
-    width: 100%;
-    border-radius: 16px;
-}
-
-.map-container {
-    border-radius: 16px;
-}
-
-/* Dark mode water bodies - keep same blue color */
-.layer-description {
-    font-size: 12px;
-    color: #7f8c8d;
-    line-height: 1.4;
-}
-
-.layer-icons {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 20px;
-    justify-content: center;
-}
-
-/* Dark mode map wrapper */
-.dark .map-wrapper {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-
-/* Ensure water areas keep blue color in dark mode */
-.dark .leaflet-interactive[fill="#4A90E2"] {
-    fill: #4A90E2 !important;
-    fill-opacity: 0.4 !important;
-}
-
-.dark .leaflet-interactive[stroke="#4A90E2"] {
-    stroke: #4A90E2 !important;
-}
-
-.dark .layer-description {
-    color: #94a3b8;
-}
-
 /* Responsive design to prevent collisions */
 @media (max-width: 768px) {
     .layer-controls {
@@ -279,6 +241,35 @@
         flex-direction: column;
     }
 }
+
+/* MapContainer.tsx: Old Styling
+
+.layer-icons {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.layer-description {
+    font-size: 12px;
+    color: #7f8c8d;
+    line-height: 1.4;
+}
+
+.dark .layer-description {
+    color: #94a3b8;
+}
+
+.dark .leaflet-interactive[fill="#4A90E2"] {
+    fill: #4A90E2 !important;
+    fill-opacity: 0.4 !important;
+}
+
+.dark .leaflet-interactive[stroke="#4A90E2"] {
+    stroke: #4A90E2 !important;
+}
+*/
 
 /* MapLegend.tsx: Old Styles
 
