@@ -116,123 +116,7 @@
     border-radius: 16px;
 }
 
-.map-legend {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    padding: 24px;
-    z-index: 1000;
-    max-width: 300px;
-    border: 3px solid rgba(102, 126, 234, 0.6);
-    transition: all 0.3s ease;
-}
-
-.map-legend:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-    border-color: rgba(102, 126, 234, 0.8);
-}
-
-/*  */
-
-.legend-section {
-    margin-bottom: 20px;
-}
-
-.legend-section:last-child {
-    margin-bottom: 0;
-}
-
-.legend-subsection {
-    margin-bottom: 16px;
-}
-
-.legend-subtitle {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #34495e;
-}
-
-.legend-items {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    color: #5a6c7d;
-}
-
-.legend-icon {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-}
-
-.legend-icon.landmark {
-    background-color: #e74c3c;
-}
-
-.legend-icon.animal {
-    background-color: #3498db;
-}
-
-.legend-icon.insect {
-    background-color: #f39c12;
-}
-
-.legend-icon.plant {
-    background-color: #27ae60;
-}
-
-.area-legend-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    color: #5a6c7d;
-}
-
-.area-legend-icon {
-    width: 20px;
-    height: 12px;
-    border-radius: 2px;
-}
-
-.area-legend-icon--species {
-    background-color: rgba(255, 215, 0, 0.3);
-    border: 1px solid #FFD700;
-}
-
-.area-legend-icon--water {
-    background-color: rgba(74, 144, 226, 0.3);
-    border: 1px solid #4A90E2;
-}
-
 /* Dark mode water bodies - keep same blue color */
-.dark .area-legend-icon--water {
-    background-color: rgba(74, 144, 226, 0.3);
-    border: 1px solid #4A90E2;
-}
-
-.area-legend-icon--soil {
-    background-color: rgba(155, 89, 182, 0.3);
-    border: 1px solid #9B59B6;
-}
-
-.layer-info {
-    flex: 1;
-}
-
 .layer-description {
     font-size: 12px;
     color: #7f8c8d;
@@ -244,52 +128,6 @@
     gap: 16px;
     margin-bottom: 20px;
     justify-content: center;
-}
-
-.layer-icon-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding: 16px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(102, 126, 234, 0.2);
-    backdrop-filter: blur(5px);
-    min-width: 80px;
-}
-
-.layer-icon-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(102, 126, 234, 0.4);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.layer-icon-button.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-color: #667eea;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-
-.layer-icon-button.active .layer-icon-text {
-    color: white !important;
-}
-
-.layer-icon-button.active svg {
-    color: white !important;
-    fill: white !important;
-}
-
-
-.layer-icon-text {
-    font-size: 12px;
-    color: #5a6c7d;
-    font-weight: 500;
 }
 
 .header {
@@ -356,30 +194,6 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-/* Dark mode legend */
-.dark .map-legend {
-    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%);
-    border: 3px solid rgba(102, 126, 234, 0.4);
-    color: #e2e8f0;
-}
-
-.dark .map-legend:hover {
-    border-color: rgba(102, 126, 234, 0.6);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-}
-
-.dark .legend-subtitle {
-    color: #cbd5e1;
-}
-
-.dark .legend-item {
-    color: #94a3b8;
-}
-
-.dark .area-legend-item {
-    color: #94a3b8;
-}
-
 /* Ensure water areas keep blue color in dark mode */
 .dark .leaflet-interactive[fill="#4A90E2"] {
     fill: #4A90E2 !important;
@@ -394,35 +208,157 @@
     color: #94a3b8;
 }
 
-/* Dark mode layer buttons */
-.dark .layer-icon-button {
-    background: rgba(255, 255, 255, 0.05);
+/* Responsive design to prevent collisions */
+@media (max-width: 768px) {
+    .layer-controls {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 10px;
+        max-width: none;
+    }
+    
+    .main-content {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* MapLegend.tsx: Old Styles
+
+.map-legend {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+    z-index: 1000;
+    max-width: 300px;
+    border: 3px solid rgba(102, 126, 234, 0.6);
+    transition: all 0.3s ease;
+}
+
+.map-legend:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(102, 126, 234, 0.8);
+}
+
+.dark .map-legend {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%);
+    border: 3px solid rgba(102, 126, 234, 0.4);
     color: #e2e8f0;
 }
 
-.dark .layer-icon-button:hover {
-    background: rgba(255, 255, 255, 0.1);
+.dark .map-legend:hover {
+    border-color: rgba(102, 126, 234, 0.6);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
-.dark .layer-icon-button.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+.legend-section {
+    margin-bottom: 20px;
 }
 
-.dark .layer-icon-text {
+.legend-section:last-child {
+    margin-bottom: 0;
+}
+
+.legend-subsection {
+    margin-bottom: 16px;
+}
+
+.legend-subtitle {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #34495e;
+}
+
+.dark .legend-subtitle {
+    color: #cbd5e1;
+}
+
+.legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #5a6c7d;
+}
+
+.dark .legend-item {
     color: #94a3b8;
 }
 
-.dark .layer-icon-button.active .layer-icon-text {
-    color: white !important;
+.area-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #5a6c7d;
 }
 
-.dark .layer-icon-button.active svg {
-    color: white !important;
-    fill: white !important;
+.dark .area-legend-item {
+    color: #94a3b8;
 }
 
-/* Responsive design to prevent collisions */
+.legend-icon {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.legend-icon.landmark {
+    background-color: #e74c3c;
+}
+
+.legend-icon.animal {
+    background-color: #3498db;
+}
+
+.legend-icon.insect {
+    background-color: #f39c12;
+}
+
+.legend-icon.plant {
+    background-color: #27ae60;
+}
+
+.area-legend-icon {
+    width: 20px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.area-legend-icon--species {
+    background-color: rgba(255, 215, 0, 0.3);
+    border: 1px solid #FFD700;
+}
+
+.area-legend-icon--water {
+    background-color: rgba(74, 144, 226, 0.3);
+    border: 1px solid #4A90E2;
+}
+
+.dark .area-legend-icon--water {
+    background-color: rgba(74, 144, 226, 0.3);
+    border: 1px solid #4A90E2;
+}
+
+.area-legend-icon--soil {
+    background-color: rgba(155, 89, 182, 0.3);
+    border: 1px solid #9B59B6;
+}
+
 @media (max-width: 1200px) {
     .map-legend {
         margin-right: 0;
@@ -438,17 +374,84 @@
         margin: 10px;
         max-width: none;
     }
-    
-    .layer-controls {
-        position: relative;
-        top: auto;
-        right: auto;
-        margin: 10px;
-        max-width: none;
-    }
-    
-    .main-content {
-        display: flex;
-        flex-direction: column;
-    }
+*/
+
+/* LayerControls.tsx: Old Styling
+
+.layer-icon-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(102, 126, 234, 0.2);
+    backdrop-filter: blur(5px);
+    min-width: 80px;
 }
+
+.layer-icon-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(102, 126, 234, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.layer-icon-button.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.layer-icon-button.active svg {
+    color: white !important;
+    fill: white !important;
+}
+
+.dark .layer-icon-button {
+    background: rgba(255, 255, 255, 0.05);
+    color: #e2e8f0;
+}
+
+.dark .layer-icon-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dark .layer-icon-button.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.dark .layer-icon-button.active svg {
+    color: white !important;
+    fill: white !important;
+}
+
+.layer-icon-text {
+    font-size: 12px;
+    color: #5a6c7d;
+    font-weight: 500;
+}
+
+.dark .layer-icon-text {
+    color: #94a3b8;
+}
+
+.layer-icon-button.active .layer-icon-text {
+    color: white !important;
+}
+
+.dark .layer-icon-button.active .layer-icon-text {
+    color: white !important;
+}
+
+.layer-info {
+    flex: 1;
+}
+
+*/
