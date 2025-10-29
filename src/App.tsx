@@ -26,13 +26,12 @@ function App() {
 
         // Take the name property of each collection and set it's initial visibility to true
         const layerNames = collections.map((fc) => fc.name )
-        const visbilityMap = layerNames.reduce((map, name) => { map[name] = true; return map }, {} as LayerVisibilityMap)
-        setLayerVisibility({...visbilityMap})
+        const visibilityMap = layerNames.reduce((map, name) => { map[name] = true; return map }, {} as LayerVisibilityMap)
+        setLayerVisibility({...visibilityMap})
       },)
   }, [])
 
   const layersToRender = layers.filter((fc) => layerVisibility[fc.name])
-  console.log(layersToRender)
 
   return (
     <div className="app-container">
