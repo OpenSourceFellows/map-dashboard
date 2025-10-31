@@ -22,13 +22,15 @@ git checkout -b <type>/<descriptive-name>
 
 ## Creating Pull Requests
 
-Create PRs for changes using GitHub CLI:
+Push your branch:
 
 ```bash
-# Push your branch
 git push -u origin <your-branch-name>
+```
 
-# Create PR (uses PR template)
+Create PR using [GitHub CLI](https://cli.github.com/) (requires installation):
+
+```bash
 gh pr create --title "Your PR title" --fill
 ```
 
@@ -42,7 +44,7 @@ gh pr create --title "Your PR title" --fill
 
 ### 2. Check out PR locally (optional)
 
-If you want to test it locally:
+If you want to test it locally, use [GitHub CLI](https://cli.github.com/):
 
 ```bash
 gh pr checkout <PR-number>
