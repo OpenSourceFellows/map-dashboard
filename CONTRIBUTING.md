@@ -11,14 +11,14 @@ Click the **"Fork"** button on the top right of this page to create a copy of th
 
 ### 2. Clone Your Fork Locally
 
-```bash
+```sh
 git clone https://github.com/YOUR-USERNAME/YOUR-FORK.git
 cd YOUR-FORK
 ```
 
 ### 3. Add the Original Repo as a Remote
 
-```bash
+```sh
 git remote add upstream https://github.com/OpenSourceFellows/map-dashboard.git
 ```
 
@@ -26,7 +26,7 @@ git remote add upstream https://github.com/OpenSourceFellows/map-dashboard.git
 
     Never work directly on main or reuse old branches.
 
-```bash
+```sh
 git checkout main
 git pull upstream main
 git checkout -b feature/your-feature-name
@@ -36,14 +36,14 @@ git checkout -b feature/your-feature-name
 
 Make your changes locally, and commit them:
 
-```bash
+```sh
 git add .
 git commit -m "Add: brief description of your change"
 ```
 
 ### 6. Push the Branch to Your Fork
 
-```bash
+```sh
 git push origin feature/your-feature-name
 ```
 
@@ -59,7 +59,7 @@ git push origin feature/your-feature-name
 
 Before starting new work, always sync your fork:
 
-```bash
+```sh
 git checkout main
 git fetch upstream
 git merge upstream/main

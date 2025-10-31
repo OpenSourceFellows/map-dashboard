@@ -14,7 +14,7 @@ Based on existing branches in the repository:
 - `Issue-##` - Issue-specific work (e.g., `Issue-10`, `Issue-67`)
 
 **Creating a branch:**
-```bash
+```sh
 git checkout main
 git pull origin main
 git checkout -b <type>/<descriptive-name>
@@ -24,13 +24,13 @@ git checkout -b <type>/<descriptive-name>
 
 Push your branch:
 
-```bash
+```sh
 git push -u origin <your-branch-name>
 ```
 
 Create PR using [GitHub CLI](https://cli.github.com/) (requires installation):
 
-```bash
+```sh
 gh pr create --title "Your PR title" --fill
 ```
 
@@ -46,7 +46,7 @@ gh pr create --title "Your PR title" --fill
 
 If you want to test it locally, use [GitHub CLI](https://cli.github.com/):
 
-```bash
+```sh
 gh pr checkout <PR-number>
 ```
 
