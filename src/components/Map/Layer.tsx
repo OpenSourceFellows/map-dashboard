@@ -18,7 +18,10 @@ interface LayerProps {
 export function Layer({ featureCollection }: LayerProps): JSX.Element[] {
   return (
     featureCollection.features.map((feature, idx) => (
-      <GeoJSON key={idx} data={feature} />
+      <GeoJSON
+        key={`${featureCollection.name}-${feature.id || idx}`}
+        data={feature}
+      />
     ))
   )
 }

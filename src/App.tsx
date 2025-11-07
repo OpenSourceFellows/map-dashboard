@@ -32,7 +32,6 @@ function App(): JSX.Element {
   }, [])
 
   const layersToRender = layers.filter((fc) => layerVisibility[fc.name])
-  console.log(layersToRender)
 
   return (
     <Box 
