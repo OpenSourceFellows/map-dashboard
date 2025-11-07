@@ -41,7 +41,7 @@ export const LayerControls: React.FC<LayerControlsProps> = ({
         {Object.entries(visibilityMap as Record<string, boolean>).map(([layerName, isVisible], idx) => (
           <Box
             component="li"
-            key={idx} 
+            key={layerName} 
             className="layer-item"
             sx={{
               display: 'flex',

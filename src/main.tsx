@@ -1,36 +1,34 @@
-import React, { useMemo, useState, useEffect, createContext } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import { ThemeProvider, createTheme, CssBaseline, GlobalStyles } from '@mui/material';
+import { ColorModeContext } from '@/contexts/ColorModeContext';
 import '@/styles/globals.css';
 
-// 1️⃣ Define and export ColorModeContext
-interface ColorModeContextType {
-  toggleColorMode: () => void;
-}
-
-export const ColorModeContext = createContext<ColorModeContextType>({
-  toggleColorMode: () => {},
-});
+// 1️⃣ Use ColorModeContext for light/dark mode state
 
 // Helper to read CSS variable
 function getCSSVariable(name: string) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
+// Helper with fallback
+function getCSSVariableOrFallback(name: string, fallback: string) {
+  const value = getCSSVariable(name);
+  return value || fallback;
+}
+
 // 2️⃣ Define app modes, toggle control, and palette
 function Main() {
   type ThemeMode = 'light' | 'dark';
 
-  // Apply data-theme before first render
-  const [mode, setMode] = useState<ThemeMode>('light');
-
-  useEffect(() => {
-    // Initialize from localStorage if exists
-    const storedMode = (localStorage.getItem('darkMode') as ThemeMode) || 'light';
-    setMode(storedMode);
-    document.documentElement.setAttribute('data-theme', storedMode);
-  }, []);
+  // Initialize from localStorage synchronously to prevent flash
+  const [mode, setMode] = useState<ThemeMode>(() => {
+    const stored = localStorage.getItem('darkMode');
+    const initial = (stored === 'dark' || stored === 'light') ? stored : 'light';
+    document.documentElement.setAttribute('data-theme', initial);
+    return initial;
+  });
 
   // Toggle function for dark/light mode
   const toggleColorMode = () => {
@@ -43,7 +41,7 @@ function Main() {
   };
 
   // Memoize color mode context for performance
-  const colorMode = useMemo(() => ({ toggleColorMode }), []);
+  const colorMode = useMemo(() => ({ toggleColorMode, mode }), [mode]);
 
   // Memoized MUI theme
   const theme = useMemo(() => {
@@ -57,7 +55,23 @@ function Main() {
       '--color-text-secondary',
     ];
 
-    const [primary, secondary, bgDefault, bgPaper, textPrimary, textSecondary] = vars.map(getCSSVariable);
+    const FALLBACKS: Record<string, string> = {
+      '--color-primary': '#667eea',
+      '--color-secondary': '#764ba2',
+      '--color-bg-default': '#f9f9f9',
+      '--color-bg-paper': 'transparent',
+      '--color-text-primary': '#2c3e50',
+      '--color-text-secondary': '#5a6c7d',
+    };
+
+    const [primary, secondary, bgDefault, bgPaper, textPrimary, textSecondary] = vars.map(
+      (v) => getCSSVariableOrFallback(v, FALLBACKS[v])
+    );
+
+    // Validate that critical variables are present
+    if (!primary || !bgDefault || !textPrimary) {
+      console.warn('Missing critical CSS variables, using fallbacks');
+    }
 
     return createTheme({
       palette: {

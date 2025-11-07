@@ -141,7 +141,7 @@
     border-radius: 18px;
     border: none;
     background: var(--bg-toggle-box);
-    backdrop-filter: blur(--app-blur);
+    backdrop-filter: blur(var(--app-blur));
     transition: var(--app-transition);
     box-shadow: var(--box-shadow);
 }
