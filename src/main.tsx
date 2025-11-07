@@ -19,7 +19,7 @@ function getCSSVariableOrFallback(name: string, fallback: string) {
 }
 
 // 2️⃣ Define app modes, toggle control, and palette
-function Main() {
+export function Main() {
   type ThemeMode = 'light' | 'dark';
 
   // Initialize from localStorage synchronously to prevent flash
