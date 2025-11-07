@@ -38,7 +38,7 @@ export const LayerControls: React.FC<LayerControlsProps> = ({
       </h3>
 
       <ul role="group" aria-label="Map Data Layers">
-        {Object.entries(visibilityMap as Record<string, boolean>).map(([layerName, isVisible], idx) => (
+        {Object.entries(visibilityMap as Record<string, boolean>).map(([layerName, isVisible]) => (
           <Box
             component="li"
             key={layerName} 

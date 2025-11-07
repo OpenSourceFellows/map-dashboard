@@ -9,7 +9,7 @@ import { ColorModeContext } from '@/contexts/ColorModeContext';
  * @returns {JSX.Element} The application header with ProgramEarth branding and dark mode toggle
  */
 export const Header: React.FC = () => {
-  const { toggleColorMode, mode} = useContext(ColorModeContext);
+  const { toggleColorMode, mode } = useContext(ColorModeContext);
   const isDarkMode = mode === 'dark';
   // Toggle dark mode using context
   const handleToggle = () => {

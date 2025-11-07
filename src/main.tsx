@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import { ThemeProvider, createTheme, CssBaseline, GlobalStyles } from '@mui/material';
