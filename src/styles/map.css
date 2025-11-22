@@ -113,6 +113,11 @@
     box-shadow: var(--box-shadow-hover-header-logo);
 }
 
+.header h2 {
+  color: var(--color-text-primary);
+  transition: color var(--app-transition);
+}
+
 .light-dark-controller {
     border-radius: var(--border-radius-controller);
     border: var(--border-header);

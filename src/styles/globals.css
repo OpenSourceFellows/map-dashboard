@@ -47,6 +47,7 @@ h2 { font-size: 20px; }
 /* Custom variables: colors */
 :root {
   /* Light mode colors */
+  --body-bg-default: #f9f9f9;
   --color-primary: #667eea;
   --color-secondary: #764ba2;
   --color-bg-default: #f9f9f9;
@@ -57,14 +58,13 @@ h2 { font-size: 20px; }
 
 [data-theme='dark'] {
   /* Dark mode colors */
+  --body-bg-default: #16213e;
   --color-primary: #667eea;
   --color-secondary: #764ba2;
   --color-bg-default: #1a1a2e;
   --color-bg-paper: rgba(0, 0, 0, 0.2);
   --color-text-primary: #e2e8f0;
   --color-text-secondary: #94a3b8;
-
-  --body-bg-default-end: #16213e;
 }
 
 /* App Container */

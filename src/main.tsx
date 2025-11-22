@@ -47,6 +47,7 @@ export function Main() {
   const theme = useMemo(() => {
     // Grab CSS variables dynamically from :root or [data-theme]
     const vars = [
+      '--body-bg-default',
       '--color-primary',
       '--color-secondary',
       '--color-bg-default',
@@ -56,6 +57,7 @@ export function Main() {
     ];
 
     const FALLBACKS: Record<string, string> = {
+      '--body-bg-default': '#f9f9f9',
       '--color-primary': '#667eea',
       '--color-secondary': '#764ba2',
       '--color-bg-default': '#f9f9f9',
@@ -102,7 +104,7 @@ export function Main() {
                 background:
                   theme.palette.mode === 'light'
                     ? `linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)`
-                    : `linear-gradient(135deg, var(--color-bg-default) 0%, var(--body-bg-default-end) 100%)`,
+                    : `linear-gradient(135deg, var(--body-bg-default) 0%, var(--body-bg-default) 100%)`,
                 color: theme.palette.text.primary,
                 transition: 'var(--app-transition)',
               },
