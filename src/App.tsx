@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type JSX } from 'react';
 import { Header } from '@/components/Layout/Header';
 import { MapContainer } from '@/components/Map/MapContainer';
-import { MapLegend } from '@/components/Map/MapLegend';
 import { LayerControls } from '@/components/Map/LayerControls';
+import { Box } from '@mui/material';
 import '@/styles/globals.css';
 import '@/styles/map.css';
 import { FixtureReader } from './data/fixture-reader';
@@ -15,7 +15,7 @@ import type { FeatureCollection } from './types/geometry';
  * @component
  * @returns {JSX.Element} The complete application layout with header and map interface
  */
-function App() {
+function App(): JSX.Element {
   const [layers, setLayers] = useState<FeatureCollection[]>([])
   const [layerVisibility, setLayerVisibility] = useState<LayerVisibilityMap>({})
 
@@ -34,17 +34,34 @@ function App() {
   const layersToRender = layers.filter((fc) => layerVisibility[fc.name])
 
   return (
-    <div className="app-container">
+    <Box 
+      className="app-container"
+      sx={{
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        margin: 'var(--app-margin)',
+        overflow: 'hidden',
+      }}
+    >
       <Header />
-      <main className="main-content">
+      <Box 
+        component="main"
+        className="main-content"
+        sx={{
+          flex: 1, 
+          position: 'relative', 
+          overflow: 'hidden',
+        }}
+      >
         <MapContainer layers={layersToRender} />
         {/*<MapLegend />*/}
         <LayerControls
           visibilityMap={layerVisibility}
           onLayerChange={setLayerVisibility}
         />
-      </main>
-    </div>
+      </Box>
+    </Box>
   );
 }
 

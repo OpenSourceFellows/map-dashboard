@@ -1,21 +1,282 @@
+/* Custom variables: spacing */
+:root {
+    --row-gutter: 8px;
+    --row-1: 16px;
+    --row-2: 32px;
+
+    --col-gutter: 10px;
+    --col-1: 20px;
+    --col-2: 40px;
+}
+
+/* Custom variables: colors */
+:root {
+  --border: 3px solid var(--color-primary);
+  --border-hover: rgba(102, 126, 234, 0.8);
+  --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --box-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.2);
+  --bg-gradient-start: rgba(255,255,255,0.95);
+  --bg-gradient-end: rgba(248,250,252,0.95);
+  --color-title: #2c3e50;
+  --color-text: #2c3e50;
+
+  --edge: 20px;
+  --border-radius: 16px;
+  --padding: 24px;
+  --translate-y: translate(-2px);
+  --zIndex: 1000;
+
+  /* header */
+  --border-header: 1px solid rgba(255, 255, 255, 0.2);
+  --bg-controller: rgba(255, 255, 255, 0.1);
+  --bg-hover-controller: rgba(255, 255, 255, 0.15);
+
+  --border-radius-controller: 24px;
+  --bg-toggle-box: rgba(255, 255, 255, 0.2);
+  --bg-hover-toggle-box: rgba(255, 255, 255, 0.3);
+  --bg-toggle-slider: #1a1a2e;
+  --box-shadow-header-logo: 0 4px 15px rgba(102, 126, 234, 0.4);
+  --box-shadow-hover-header-logo: 0 6px 20px rgba(102, 126, 234, 0.6);
+  --box-shadow-toggle-slider: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --text-shadow-header-logo: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --color-toggle-icon: #fbbf24;
+
+  /* layer-item */
+  --border-layer-item: 1px solid rgba(102, 126, 234, 0.15);
+
+  --border-hover-layer-item: rgba(102, 126, 234, 0.3);
+  --background-layer-item: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] {
+  --border: 3px solid rgba(102, 126, 234, 0.4);
+  --border-hover: rgba(102, 126, 234, 0.6);
+  --box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  --box-shadow-hover: 0 12px 40px rgba(0,0,0,0.4);
+  --bg-gradient-start: rgba(26,26,46,0.95);
+  --bg-gradient-end: rgba(22,33,62,0.95);
+  --color-title: #f1f5f9;
+  --color-text: #e2e8f0;
+
+  /* header */
+  --border-header: 1px solid rgba(255, 255, 255, 0.1);
+  --bg-controller: rgba(0, 0, 0, 0.2);
+  --bg-hover-controller: rgba(0, 0, 0, 0.3);
+
+  /* layer-item */
+  --border-layer-item: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Custom variables: wrappers */
+:root {
+  /* App */
+  --app-margin: 10px;
+  --app-blur: 10px;
+
+  /* LayerControls */
+  --controls-width: 250px;
+
+  /* Animations */
+  --app-transition: all 0.3s ease;
+}
+
+/* Reusable styles */
+.space-row-1 {
+    padding-bottom: var(--row-1);
+}
+
+.component-title {
+    color: var(--color-title);
+}
+
+/* Header */
+.header {
+    border-bottom: var(--border-header);
+    background: var(--bg-gradient-start);
+    backdrop-filter: blur(var(--app-blur));
+    box-shadow: var(--box-shadow);
+}
+
+.logo-icon {
+    width: var(--col-2);
+    height: var(--col-2);
+    border-radius: var(--border-radius);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: var(--color-text);
+    transition: var(--app-transition);
+    box-shadow: var(--box-shadow-header-logo);
+    text-shadow: var(--text-shadow-header-logo);
+}
+
+.logo-icon:hover {
+    transform: scale(1.05);
+    box-shadow: var(--box-shadow-hover-header-logo);
+}
+
+.header h2 {
+  color: var(--color-text-primary);
+  transition: color var(--app-transition);
+}
+
+.light-dark-controller {
+    border-radius: var(--border-radius-controller);
+    border: var(--border-header);
+    padding: var(--row-gutter) var(--row-1);
+    background: var(--bg-controller);
+    transition: var(--app-transition);
+    backdrop-filter: blur(var(--app-blur));
+}
+
+.light-dark-controller:hover {
+    background: var(--bg-hover-controller);
+    transform: translateY(-1px);
+}
+
+.mode-label {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: var(--color-text) !important;
+    white-space: nowrap !important;
+    transition: var(--app-transition) !important;
+}
+
+.toggle-box.MuiIconButton-root {
+    width: 70px;
+    height: 36px;
+    border-radius: 18px;
+    border: none;
+    background: var(--bg-toggle-box);
+    backdrop-filter: blur(var(--app-blur));
+    transition: var(--app-transition);
+    box-shadow: var(--box-shadow);
+}
+
+.toggle-box.MuiIconButton-root:hover {
+    background: var(--bg-hover-toggle-box);
+    transform: scale(1.05);
+}
+
+.toggle-box--active.MuiIconButton-root {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+}
+
+.toggle-box--active.MuiIconButton-root:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
+
+.toggle__slider {
+    width: var(--row-2);
+    height: var(--row-2);
+    border-radius: 50%;
+    background: white;
+    transition: var(--app-transition);
+    box-shadow: var(--box-shadow-toggle-slider);
+}
+
+.toggle-box--active .toggle__slider {
+    transform: translateX(var(--row-2));
+    background: var(--bg-toggle-slider);
+}
+
+.toggle__icon {
+    color: var(--color-primary);
+    transition: all 0.3s ease;
+}
+
+.toggle-box--active .toggle__icon {
+    color: var(--color-toggle-icon);
+}
+
+/* Map Container */
 .map-wrapper {
-    height: 100%;
-    width: 100%;
-    border-radius: 16px;
+    border-radius: var(--border-radius);
+    border: var(--border-header);
+    box-shadow: var(--box-shadow);
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .leaflet-container {
     height: 100%;
     width: 100%;
-    border-radius: 16px;
+    border-radius: var(--border-radius);
 }
 
-.map-container {
-    border-radius: 16px;
+/* LayerControls */
+.layer-controls {
+    border-radius: var(--border-radius);
+    border: var(--border);
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    backdrop-filter: blur(var(--app-blur));
+    transition: var(--app-transition);
+    box-shadow: var(--box-shadow);
 }
+
+.layer-controls:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--box-shadow-hover);
+    transform: var(--translate-y);
+}
+
+.layer-item {
+    border: var(--border-layer-item);
+    background: var(--background-layer-item);
+    color: var(--color-text);
+    transition: var(--app-transition);
+}
+
+.layer-item:hover {
+    border-color: var(--border-hover-layer-item);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(4px);
+    box-shadow: var(--box-shadow);
+}
+
+/* Responsive design to prevent collisions */
+@media (max-width: 768px) {
+    .layer-controls {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 10px;
+        max-width: none;
+    }
+    
+    .main-content {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* MapContainer.tsx: Old Styling
+
+.layer-icons {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.layer-description {
+    font-size: 12px;
+    color: #7f8c8d;
+    line-height: 1.4;
+}
+
+.dark .layer-description {
+    color: #94a3b8;
+}
+
+.dark .leaflet-interactive[fill="#4A90E2"] {
+    fill: #4A90E2 !important;
+    fill-opacity: 0.4 !important;
+}
+
+.dark .leaflet-interactive[stroke="#4A90E2"] {
+    stroke: #4A90E2 !important;
+}
+*/
+
+/* MapLegend.tsx: Old Styles
 
 .map-legend {
     position: absolute;
@@ -38,25 +299,15 @@
     border-color: rgba(102, 126, 234, 0.8);
 }
 
-.layer-controls {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    padding: 24px;
-    z-index: 1000;
-    min-width: 250px;
-    border: 3px solid rgba(102, 126, 234, 0.6);
-    transition: all 0.3s ease;
+.dark .map-legend {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%);
+    border: 3px solid rgba(102, 126, 234, 0.4);
+    color: #e2e8f0;
 }
 
-.layer-controls:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-    border-color: rgba(102, 126, 234, 0.8);
+.dark .map-legend:hover {
+    border-color: rgba(102, 126, 234, 0.6);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 .legend-section {
@@ -78,11 +329,8 @@
     color: #34495e;
 }
 
-.legend-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: #2c3e50;
+.dark .legend-subtitle {
+    color: #cbd5e1;
 }
 
 .legend-items {
@@ -97,6 +345,22 @@
     gap: 10px;
     font-size: 14px;
     color: #5a6c7d;
+}
+
+.dark .legend-item {
+    color: #94a3b8;
+}
+
+.area-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #5a6c7d;
+}
+
+.dark .area-legend-item {
+    color: #94a3b8;
 }
 
 .legend-icon {
@@ -121,14 +385,6 @@
     background-color: #27ae60;
 }
 
-.area-legend-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    color: #5a6c7d;
-}
-
 .area-legend-icon {
     width: 20px;
     height: 12px;
@@ -145,7 +401,6 @@
     border: 1px solid #4A90E2;
 }
 
-/* Dark mode water bodies - keep same blue color */
 .dark .area-legend-icon--water {
     background-color: rgba(74, 144, 226, 0.3);
     border: 1px solid #4A90E2;
@@ -156,47 +411,24 @@
     border: 1px solid #9B59B6;
 }
 
-.layer-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 16px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(102, 126, 234, 0.15);
-    margin-bottom: 8px;
+@media (max-width: 1200px) {
+    .map-legend {
+        margin-right: 0;
+        max-width: 250px;
+    }
 }
 
-.layer-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(102, 126, 234, 0.3);
-    transform: translateX(4px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
+@media (max-width: 768px) {
+    .map-legend {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 10px;
+        max-width: none;
+    }
+*/
 
-.layer-info {
-    flex: 1;
-}
-
-.layer-name {
-    font-weight: 500;
-    color: #2c3e50;
-    margin-bottom: 4px;
-}
-
-.layer-description {
-    font-size: 12px;
-    color: #7f8c8d;
-    line-height: 1.4;
-}
-
-.layer-icons {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 20px;
-    justify-content: center;
-}
+/* LayerControls.tsx: Old Styling
 
 .layer-icon-button {
     display: flex;
@@ -228,158 +460,11 @@
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
-.layer-icon-button.active .layer-icon-text {
-    color: white !important;
-}
-
 .layer-icon-button.active svg {
     color: white !important;
     fill: white !important;
 }
 
-
-.layer-icon-text {
-    font-size: 12px;
-    color: #5a6c7d;
-    font-weight: 500;
-}
-
-.header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 20px 32px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-}
-
-.header-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 20px;
-    font-weight: 700;
-    color: #2c3e50;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.logo-icon {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    transition: all 0.3s ease;
-}
-
-.logo-icon:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-}
-
-/* ===== DARK MODE STYLES ===== */
-
-/* Dark mode header */
-.dark .header {
-    background: rgba(26, 26, 46, 0.95);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.dark .header-logo {
-    color: #e2e8f0;
-}
-
-.dark .logo-icon {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
-
-/* Dark mode map wrapper */
-.dark .map-wrapper {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-
-/* Dark mode legend */
-.dark .map-legend {
-    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%);
-    border: 3px solid rgba(102, 126, 234, 0.4);
-    color: #e2e8f0;
-}
-
-.dark .map-legend:hover {
-    border-color: rgba(102, 126, 234, 0.6);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-}
-
-.dark .legend-title {
-    color: #f1f5f9;
-}
-
-.dark .legend-subtitle {
-    color: #cbd5e1;
-}
-
-.dark .legend-item {
-    color: #94a3b8;
-}
-
-.dark .area-legend-item {
-    color: #94a3b8;
-}
-
-/* Dark mode layer controls */
-.dark .layer-controls {
-    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%);
-    border: 3px solid rgba(102, 126, 234, 0.4);
-    color: #e2e8f0;
-}
-
-/* Ensure water areas keep blue color in dark mode */
-.dark .leaflet-interactive[fill="#4A90E2"] {
-    fill: #4A90E2 !important;
-    fill-opacity: 0.4 !important;
-}
-
-.dark .leaflet-interactive[stroke="#4A90E2"] {
-    stroke: #4A90E2 !important;
-}
-
-.dark .layer-controls:hover {
-    border-color: rgba(102, 126, 234, 0.6);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-}
-
-.dark .legend-title {
-    color: #f1f5f9;
-}
-
-.dark .layer-item {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.dark .layer-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.dark .layer-name {
-    color: #f1f5f9;
-}
-
-.dark .layer-description {
-    color: #94a3b8;
-}
-
-/* Dark mode layer buttons */
 .dark .layer-icon-button {
     background: rgba(255, 255, 255, 0.05);
     color: #e2e8f0;
@@ -394,46 +479,31 @@
     color: white;
 }
 
+.dark .layer-icon-button.active svg {
+    color: white !important;
+    fill: white !important;
+}
+
+.layer-icon-text {
+    font-size: 12px;
+    color: #5a6c7d;
+    font-weight: 500;
+}
+
 .dark .layer-icon-text {
     color: #94a3b8;
+}
+
+.layer-icon-button.active .layer-icon-text {
+    color: white !important;
 }
 
 .dark .layer-icon-button.active .layer-icon-text {
     color: white !important;
 }
 
-.dark .layer-icon-button.active svg {
-    color: white !important;
-    fill: white !important;
+.layer-info {
+    flex: 1;
 }
 
-/* Responsive design to prevent collisions */
-@media (max-width: 1200px) {
-    .map-legend {
-        margin-right: 0;
-        max-width: 250px;
-    }
-}
-
-@media (max-width: 768px) {
-    .map-legend {
-        position: relative;
-        top: auto;
-        left: auto;
-        margin: 10px;
-        max-width: none;
-    }
-    
-    .layer-controls {
-        position: relative;
-        top: auto;
-        right: auto;
-        margin: 10px;
-        max-width: none;
-    }
-    
-    .main-content {
-        display: flex;
-        flex-direction: column;
-    }
-}
+*/
