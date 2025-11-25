@@ -1,11 +1,17 @@
 {
-  "name": "frontend",
+  "name": "map-dashboard",
+  "description": "Interactive map dashboard for environmental geospatial data",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenSourceFellows/map-dashboard.git"
+  },
   "engines": {
     "node": ">=20.11.0",
-    "npm": ">=10.0.0"
+    "pnpm": ">=9.0.0"
   },
   "scripts": {
     "dev": "vite",
